@@ -16,7 +16,7 @@ namespace backend.Controllers
         }
         [HttpGet]
         [Route("packages")]
-        public async Task<IEnumerable<LineStickerPackage>> GetPackages()
+        public async Task<IEnumerable<LineStickerPackageModel>> GetPackages()
         {
             return await _sticker.GetPackages();
         }

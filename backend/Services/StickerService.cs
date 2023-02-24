@@ -15,18 +15,23 @@ namespace backend.Services
             _configuration = configuration;
         }
 
-        public async Task<IEnumerable<LineStickerPackage>> GetPackages()
+        public async Task<IEnumerable<LineStickerPackageModel>> GetPackages()
         {
             string strPackage = await _fileService.LoadJson<IEnumerable<LineStickerPackage>>();
             IEnumerable<LineStickerPackage> packages = JsonConvert
                             .DeserializeObject<IEnumerable<LineStickerPackage>>(strPackage)!;
-            return packages;
+
+            IEnumerable<LineStickerPackageModel> packageModels = packages.Select(p => new LineStickerPackageModel{
+                PackageId=p.PackageId,
+                Title=p.Title,
+                PreviewUrl=_configuration["StickerUrl"].Replace(":stickerid", p.StickerIdRange!.From.ToString())
+            });
+
+            return packageModels;
         }
 
         public async Task<IEnumerable<LineStickerDetail>> GetStickers(long packageId)
         {
-            string url = _configuration["StickerUrl"];
-            url = url.Replace(":stickerid", "");
             string strSticker = await _fileService.LoadJson<IEnumerable<LineSticker>>();
             IEnumerable<LineSticker> stickers = JsonConvert
                             .DeserializeObject<IEnumerable<LineSticker>>(strSticker)!;

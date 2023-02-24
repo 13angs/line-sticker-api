@@ -5,7 +5,7 @@ namespace backend.Interfaces
 {
     public interface ISticker
     {
-        public Task<IEnumerable<LineStickerPackage>> GetPackages();
+        public Task<IEnumerable<LineStickerPackageModel>> GetPackages();
         public Task<IEnumerable<LineStickerDetail>> GetStickers(long packageId);
     }
 }
