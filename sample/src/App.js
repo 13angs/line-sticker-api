@@ -1,23 +1,32 @@
-import logo from './logo.svg';
 import './App.css';
+import React from 'react';
+import linePackage from './line-package.json';
 
 function App() {
+  const [data, setData] = React.useState(null);
+
+  React.useEffect(() => {
+    const url = process.env.REACT_APP_BACKEND_URL;
+    async function fetchData(){
+      try{
+        const res = await fetch(`${url}/api/v1/line/packages`);
+        const data = await res.json();
+        setData(data);
+      }catch(err){
+        setData(linePackage);
+      }
+    }
+
+    fetchData();
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div>
+        <pre>
+          {data && JSON.stringify(data, null, 2)}
+        </pre>
+      </div>
     </div>
   );
 }
