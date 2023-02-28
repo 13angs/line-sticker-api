@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: example-ingress
+  annotations:
+    # nginx.ingress.kubernetes.io/rewrite-target: /$1
+    nginx.ingress.kubernetes.io/use-regex: 'true'
+spec:
+  rules:
+    - host: backend.sample
+      http:
+        paths:
+          - path: /api/v1/line/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: backend-srv
+                port:
+                  number: 5000
