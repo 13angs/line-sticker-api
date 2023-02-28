@@ -33,7 +33,7 @@ jobs:
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@4
         with:
-          folder: ~/sample/build
+          folder: sample/build
           # branch: gh-pages
           # clean: true
           # token: ${{ secrets.USER_TOKEN }}

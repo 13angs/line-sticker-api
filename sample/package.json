@@ -1,5 +1,6 @@
 {
   "name": "sample",
+  "homepage": "https://13angs.github.io/line-sticker-api",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
