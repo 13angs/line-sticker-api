@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/static/css/main.6e55cbea.css",
-    "main.js": "/static/js/main.199d04e3.js",
-    "static/js/787.e577274b.chunk.js": "/static/js/787.e577274b.chunk.js",
-    "index.html": "/index.html",
-    "main.6e55cbea.css.map": "/static/css/main.6e55cbea.css.map",
-    "main.199d04e3.js.map": "/static/js/main.199d04e3.js.map",
-    "787.e577274b.chunk.js.map": "/static/js/787.e577274b.chunk.js.map"
+    "main.css": "/line-sticker-api/static/css/main.6e55cbea.css",
+    "main.js": "/line-sticker-api/static/js/main.ca1524d3.js",
+    "static/js/787.e577274b.chunk.js": "/line-sticker-api/static/js/787.e577274b.chunk.js",
+    "index.html": "/line-sticker-api/index.html",
+    "main.6e55cbea.css.map": "/line-sticker-api/static/css/main.6e55cbea.css.map",
+    "main.ca1524d3.js.map": "/line-sticker-api/static/js/main.ca1524d3.js.map",
+    "787.e577274b.chunk.js.map": "/line-sticker-api/static/js/787.e577274b.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.6e55cbea.css",
-    "static/js/main.199d04e3.js"
+    "static/js/main.ca1524d3.js"
   ]
 }
