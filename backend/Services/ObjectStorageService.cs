@@ -1,5 +1,6 @@
 using Amazon.S3;
 using Amazon.S3.Model;
+using backend.Models;
 
 namespace backend.Services
 {
@@ -24,11 +25,12 @@ namespace backend.Services
         {
             // Create an Amazon S3 client with your credentials and region.
             ListObjectsV2Response? response = new ListObjectsV2Response();
+            string bucketName = _configuration["S3Config:BucketName"];
             try
             {
                 ListObjectsV2Request request = new ListObjectsV2Request
                 {
-                    BucketName = _configuration["S3Config:BucketName"],
+                    BucketName = bucketName,
                     Prefix = Path.Combine("files", "stickers/facebook/women-15") + "/",
                     // MaxKeys = 5
                 };
@@ -50,7 +52,18 @@ namespace backend.Services
                 Console.WriteLine($"Exception: {e.Message}");
             }
             // Console.WriteLine(JsonConvert.SerializeObject(staticModels));
-            return response.S3Objects;
+            List<FacebookSticker> stickers = new List<FacebookSticker>();
+            string objectUrl = $"https://{bucketName}.ap-south-1.linodeobjects.com";
+
+            foreach(var s3Object in response.S3Objects)
+            {
+                var sticker = new FacebookSticker{
+                    Name=s3Object.Key.Split("/").Last().Split(".").First(),
+                    Url=Path.Combine(objectUrl, s3Object.Key)
+                };
+                stickers.Add(sticker);
+            }
+            return stickers;
         }
     }
 }
