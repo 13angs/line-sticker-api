@@ -37,6 +37,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<ILoadFile, LoadFileService>();
 builder.Services.AddScoped<ISticker, StickerService>();
+builder.Services.AddSingleton<ObjectStorageService>();
 
 var app = builder.Build();
 
